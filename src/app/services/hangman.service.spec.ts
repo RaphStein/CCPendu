@@ -22,14 +22,14 @@ describe('HangmanService', () => {
     it('should create a mask for the word angular', () => {
       
       service.wordToFind = "angular"
-      service.generateMask()
+      service['generateMask']();
       expect(service.wordMasked()).toBe("_______")
     });
     it('should create a mask for the word angular with a', () => {
       
       service.wordToFind = "angular"
       service.triedLetters.set(['a'])
-      service.generateMask()
+      service['generateMask']();
       expect(service.wordMasked()).toBe("a____a_")
     });
 
@@ -37,39 +37,39 @@ describe('HangmanService', () => {
   });
   describe('tryLetter', () => {
     it('should create a new mask for letter a', () => {
-      spyOn(service, 'generateMask')
+      const privateSpy = spyOn<any>(service, 'generateMask');
       service.wordToFind = "angular"
       service.tryLetter('a')
 
-      expect(service.generateMask).toHaveBeenCalled()
+      expect(privateSpy).toHaveBeenCalled()
     });
     it('should not create a new mask for letter b', () => {
-      spyOn(service, 'generateMask')
+      const privateSpy = spyOn<any>(service, 'generateMask');
       service.wordToFind = "angular"
       service.tryLetter('b')
-      expect(service.generateMask).not.toHaveBeenCalled()
+      expect(privateSpy).not.toHaveBeenCalled()
     });
+
     it('should call checkWinConditions', () => {
-      spyOn(service, 'checkWinConditions')
+      const privateSpy = spyOn<any>(service, 'checkWinConditions'); 
       service.wordToFind = "angular"
       service.tryLetter('b')
-      expect(service.checkWinConditions).toHaveBeenCalled()
+      expect(privateSpy).toHaveBeenCalled();
     });
 
 
   });
   describe('checkWinConditions', () => {
     it('should end the game, lost', () => {
-      service.failedTries.set(8)
-      service.checkWinConditions()
-
-      expect(service.isPlaying()).toBeFalse()
+      service.failedTries.set(8);
+      service['checkWinConditions']();
+      expect(service.isPlaying()).toBeFalse();
     });
-    it('should end the game, win', () => {
-      service.failedTries.set(8)
-      service.checkWinConditions()
-
-      expect(service.isPlaying()).toBeFalse()
+    it('should continue the game', () => {
+      service.newGame();
+      service.failedTries.set(2)
+      service['checkWinConditions']();
+      expect(service.isPlaying()).toBeTrue()
     });
 
 

@@ -13,7 +13,7 @@ export class HangmanService {
 
   constructor(private randomWordGenerator: RandomWordGeneratorService) { }
 
-  generateMask() {
+  private generateMask() {
     let newMask = ""
 
     for(let i = 0; i < this.wordToFind.length; i++) {
@@ -40,7 +40,7 @@ export class HangmanService {
     }
   }
 
-  checkWinConditions() {
+  private checkWinConditions() {
     if (this.failedTries() >= 7 || this.wordMasked().split(" ").join("") === this.wordToFind) {
       this.isPlaying.set(false)
     }
