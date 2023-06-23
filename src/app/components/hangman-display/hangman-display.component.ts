@@ -1,4 +1,4 @@
-import { Component, OnInit, computed } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { HangmanService } from 'src/app/services/hangman.service';
 
 @Component({

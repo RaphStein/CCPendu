@@ -8,7 +8,7 @@ import { signal } from '@angular/core';
 describe('HangmanDisplayComponent', () => {
   let component: HangmanDisplayComponent;
   let fixture: ComponentFixture<HangmanDisplayComponent>;
-  let mockedHangmanService = {
+  const mockedHangmanService = {
     triedLetters: signal<string[]>([]),
     failedTries: signal(0),
     wordToFind: "",
@@ -32,12 +32,12 @@ describe('HangmanDisplayComponent', () => {
   });
   it('should change the image', () => {
     for (let i = 1; i < 8; i++) {
-      let imgAvant = fixture.debugElement.query(By.css('img'))?.nativeElement as HTMLElement
-      let srcAvant = imgAvant.getAttribute('src');
+      const imgAvant = fixture.debugElement.query(By.css('img'))?.nativeElement as HTMLElement
+      const srcAvant = imgAvant.getAttribute('src');
       mockedHangmanService.failedTries.set(i);
       fixture.detectChanges();
-      let imgApres = fixture.debugElement.query(By.css('img'))?.nativeElement as HTMLElement
-      let srcApres = imgApres.getAttribute('src');
+      const imgApres = fixture.debugElement.query(By.css('img'))?.nativeElement as HTMLElement
+      const srcApres = imgApres.getAttribute('src');
       expect(srcAvant).not.toEqual(srcApres)
     }
   });

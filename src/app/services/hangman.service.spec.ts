@@ -1,8 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { HangmanService  } from './hangman.service';
-import { RandomWordGeneratorService } from './random-word-generator.service';
-import { Serializer } from '@angular/compiler';
+
 
 describe('HangmanService', () => {
   let service: HangmanService;

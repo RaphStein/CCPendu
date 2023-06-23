@@ -1,4 +1,4 @@
-import { Component, computed, effect } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { HangmanService } from 'src/app/services/hangman.service';
 
 @Component({

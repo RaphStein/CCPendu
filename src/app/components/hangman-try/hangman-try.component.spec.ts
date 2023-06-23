@@ -35,7 +35,7 @@ describe('HangmanTryComponent', () => {
 
     for (let i = 0; i < boutonsLettres.length; i++) {
       boutonsLettres[i]
-      .triggerEventHandler('click', { preventDefault: () => {} });
+      .triggerEventHandler('click', { preventDefault: () => {return;} });
       
       expect(component.onLetterClick).toHaveBeenCalled();
     }
@@ -52,7 +52,7 @@ describe('HangmanTryComponent', () => {
     spyOn(component, 'onNewGameClick')
     const boutonsNewGame = fixture.debugElement.query(By.css('.new-game'))
 
-    boutonsNewGame.triggerEventHandler('click', { preventDefault: () => {} });
+    boutonsNewGame.triggerEventHandler('click', { preventDefault: () => {return;} });
       
     expect(component.onNewGameClick).toHaveBeenCalled();
   })
